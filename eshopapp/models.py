@@ -77,28 +77,3 @@ class UserProfile(models.Model):
     updated = models.DateTimeField(auto_now=True)
     delivery_address = models.ForeignKey(DeliveryAddress, related_name='user_delivery_address',
                                          on_delete=models.CASCADE, blank=True, null=True, )
-
-
-# class Order(models.Model):
-#     """
-#     Order
-#     """
-#     STATUS_CHOICES = (
-#         ('0', 'new'),
-#         ('1', 'not paid'),
-#         ('2', 'paid'),
-#         ('3', 'transport'),
-#         ('4', 'closed'),
-#     )
-#     status = models.CharField(choices=STATUS_CHOICES, default='0', max_length=2)
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order_of', )
-#     remark = models.TextField(blank=True, null=True)
-#     product = models.ForeignKey(Product, related_name='order_product', on_delete=models.CASCADE)
-#     price = models.DecimalField(max_digits=12, decimal_places=2)
-#     quantity = models.PositiveIntegerField(default=1)
-#     address = models.ForeignKey(DeliveryAddress, related_name='order_address', on_delete=models.CASCADE)
-#     created = models.DateTimeField(auto_now_add=True)
-#     updated = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return 'order of %d' % (self.user.id)
