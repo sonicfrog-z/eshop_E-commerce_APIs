@@ -9,8 +9,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from eshopapp.serializers import ProductListSerializer, ProductRetrieveSerializer, UserInfoSerializer, \
-    UserProfileSerializer, UserSerializer
-from eshopapp.models import Product, UserProfile
+    UserProfileSerializer, UserSerializer, CategoryListSerializer, ManufacturerListSerializer
+from eshopapp.models import Product, UserProfile, Category, Manufacturer
 
 
 # Create your views here.
@@ -112,6 +112,24 @@ class ProductRetrieveView(generics.RetrieveAPIView):
     permission_classes = (permissions.AllowAny,)
 
 
+class CategoryListView(generics.ListAPIView):
+    """
+    Category list
+    """
+    queryset = Category.objects.all()
+    serializer_class = CategoryListSerializer
+    permission_class = (permissions.AllowAny,)
+
+
+class ManufacturerListView(generics.ListAPIView):
+    """
+    Manufacturer list
+    """
+    queryset = Manufacturer.objects.all()
+    serializer_class = ManufacturerListSerializer
+    permission_class = (permissions.AllowAny,)
+
+
 @api_view(['GET', ])
 def api_root(request, format=None):
     return Response({'product_list': reverse('product_list', request=request, format=format),
@@ -121,4 +139,6 @@ def api_root(request, format=None):
                      # 'product_retrieve': reverse('product_retrieve', request=request, format=format),
                      'user_info': reverse('user_info', request=request, format=format),
                      # 'user_profile_ru': reverse('user_profile_ru', request=request, format=format),
+                     'category_list': reverse('category_list', request=request, format=format),
+                     'manufacturer_list': reverse('manufacturer_list', request=request, format=format),
                      })

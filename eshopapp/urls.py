@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^product_list_by_category_manufacturer/$', views.ProductListByCategoryManufacturerView.as_view(),
         name='product_list_by_category_manufacturer'),
     url(r'^product_retrieve/(?P<pk>[0-9]+)/$', views.ProductRetrieveView.as_view(), name='product_retrieve'),
+    url(r'^category_list/$', views.CategoryListView.as_view(), name='category_list'),
+    url(r'^manufacturer_list/$', views.ManufacturerListView.as_view(), name='manufacturer_list'),
 
     url(r'^$', views.api_root),
 ]

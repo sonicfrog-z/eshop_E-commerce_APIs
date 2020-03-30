@@ -4,6 +4,7 @@ from eshopapp.models import Product, Manufacturer, Category, UserProfile
 
 
 def save_user_profile(user, response, *args, **kwargs):
+    # print(response)
     user_profile = UserProfile(user=user)
     user_profile.save()
 
@@ -63,3 +64,15 @@ class ProductRetrieveSerializer(serializers.ModelSerializer):
         model = Product
         fields = (
             'id', 'model', 'image', 'price', 'sold', 'category', 'manufacturer', 'description', 'created', 'updated',)
+
+
+class CategoryListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name',)
+
+
+class ManufacturerListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Manufacturer
+        fields = ('id', 'name', 'description',)
